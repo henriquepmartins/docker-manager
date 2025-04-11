@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.Duration;
+
 @Configuration
 public class DockerClientConfig {
 
@@ -29,6 +31,9 @@ public class DockerClientConfig {
 
         ApacheDockerHttpClient dockerHttpClient = new ApacheDockerHttpClient.Builder()
                 .dockerHost(dockerClientConfig.getDockerHost())
+                .maxConnections(5)
+                .connectionTimeout(Duration.ofMillis(300))
+                .responseTimeout(Duration.ofSeconds(3))
                 .build();
 
         return DockerClientBuilder
