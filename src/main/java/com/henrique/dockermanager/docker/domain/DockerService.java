@@ -24,7 +24,9 @@ public class DockerService {
     public List<Image> listImages() {
         return dockerClient.listImagesCmd().exec();
     }
-
+    public List<Image> filterImages(String filterName) {
+        return dockerClient.listImagesCmd().withImageNameFilter(filterName).exec();
+    }
     public void startContainer(String containerId) {
         dockerClient.startContainerCmd(containerId).exec();
     }
