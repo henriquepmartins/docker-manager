@@ -28,6 +28,7 @@ public class DockerClientConfig {
         ApacheDockerHttpClient dockerHttpClient = new ApacheDockerHttpClient.Builder().dockerHost(
                 dockerClientConfig.getDockerHost()).build();
 
+        
         return DockerClientBuilder.getInstance(dockerClientConfig).withDockerHttpClient(dockerHttpClient).build();
     }
 }
